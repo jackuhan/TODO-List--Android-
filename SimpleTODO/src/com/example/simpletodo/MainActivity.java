@@ -2,9 +2,11 @@ package com.example.simpletodo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.example.bean.EventType;
 import com.example.bean.ListItem;
+import com.example.db.STODOSQLiteOpenHelper;
 import com.example.view.ListItemView;
 
 import android.os.Bundle;
@@ -33,19 +35,20 @@ public class MainActivity extends Activity {
 	private Button addButton;
 	private LinearLayout listItemViewContainer;
 	
+	//Database
+	private STODOSQLiteOpenHelper sTODOSQLiteOpenHelper;
+	
 	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		sTODOSQLiteOpenHelper = new STODOSQLiteOpenHelper(this.getApplicationContext());
 		listItems = new ArrayList<ListItem>();
 		linkView();
+		initiateItemViewContainer();
 		setListItemViewContainer();
-		
-		TextView testText = new TextView(this);
-		testText.setText("111111111111");
-		listItemViewContainer.addView(testText);
 	}
 
 	@Override
@@ -73,6 +76,7 @@ public class MainActivity extends Activity {
 	}
 	
 	private void addAEvent(){
+		//create a AlertDialog for adding a new event
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
 		alert.setTitle("Add A Event");
@@ -90,18 +94,22 @@ public class MainActivity extends Activity {
 		linerInDialogue.addView(typeMenu);
 		
 		alert.setView(linerInDialogue);
-
 		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 		public void onClick(DialogInterface dialog, int whichButton) {
 		  // Create a ListItem and store it
-		  Editable value = input.getText();
 		  ListItem listItem = new ListItem();
+		  
+		  UUID uuid = UUID.randomUUID();
+		  listItem.setId(Integer.valueOf(uuid.toString())); //set ID
+		  
+		  Editable value = input.getText();
 		  listItem.setItemName(value.toString());
 
 		  String eventType = (String) typeMenu.getSelectedItem();
 		  listItem.setItemType(eventType);
 		  
-		  listItems.add(listItem);
+		  listItems.add(listItem); //store to memory
+		  sTODOSQLiteOpenHelper.addListItem(listItem); //store to sqlite
 		  
 		  setListItemViewContainer(); //refresh ListItemViewContainer
 		  }
@@ -133,6 +141,10 @@ public class MainActivity extends Activity {
 			ListItemView listItemView = new ListItemView(this, null, listItem);
 			listItemViewContainer.addView(listItemView);
 		}
+	}
+	
+	public void initiateItemViewContainer(){
+		
 	}
 
 

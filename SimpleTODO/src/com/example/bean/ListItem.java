@@ -2,6 +2,7 @@ package com.example.bean;
 
 public class ListItem {
 	
+	private int id;
 	private String itemName;
 	private String itemType;
 	private boolean complete;
@@ -28,6 +29,14 @@ public class ListItem {
 	}
 	public void setComplete(boolean complete) {
 		this.complete = complete;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	
