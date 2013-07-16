@@ -51,5 +51,9 @@ public class ListItemView extends RelativeLayout {
 		setLowerText(listItem.getItemType());
 		determinCheckBox();
 	}
+	
+	public ListItem getListItem(){
+		return listItem;
+	}
 
 }

@@ -2,7 +2,7 @@ package com.example.bean;
 
 public class ListItem {
 	
-	private int id;
+	private String id;
 	private String itemName;
 	private String itemType;
 	private boolean complete;
@@ -31,11 +31,11 @@ public class ListItem {
 		this.complete = complete;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	

@@ -7,6 +7,7 @@ import java.util.UUID;
 import com.example.bean.EventType;
 import com.example.bean.ListItem;
 import com.example.db.STODOSQLiteOpenHelper;
+import com.example.listener.ListItemViewLongClickListener;
 import com.example.view.ListItemView;
 
 import android.os.Bundle;
@@ -49,6 +50,11 @@ public class MainActivity extends Activity {
 		linkView();
 		initiateItemViewContainer();
 		setListItemViewContainer();
+		
+		//test
+//		sTODOSQLiteOpenHelper.deleteAllData();
+
+
 	}
 
 	@Override
@@ -100,7 +106,7 @@ public class MainActivity extends Activity {
 		  ListItem listItem = new ListItem();
 		  
 		  UUID uuid = UUID.randomUUID();
-		  listItem.setId(Integer.valueOf(uuid.toString())); //set ID
+		  listItem.setId(uuid.toString()); //set ID
 		  
 		  Editable value = input.getText();
 		  listItem.setItemName(value.toString());
@@ -135,16 +141,18 @@ public class MainActivity extends Activity {
 	}
 	
 	//Add the ListItemView into main screen
-	private void setListItemViewContainer(){
+	public void setListItemViewContainer(){
 		listItemViewContainer.removeAllViews();
 		for(ListItem listItem : listItems){
 			ListItemView listItemView = new ListItemView(this, null, listItem);
+			listItemView.setOnLongClickListener(new ListItemViewLongClickListener(listItems, this));
 			listItemViewContainer.addView(listItemView);
 		}
 	}
 	
-	public void initiateItemViewContainer(){
-		
+	private void initiateItemViewContainer(){
+		sTODOSQLiteOpenHelper.getAllListItem(listItems);
+		setListItemViewContainer();
 	}
 
 
