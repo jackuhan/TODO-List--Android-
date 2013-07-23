@@ -7,6 +7,7 @@ import java.util.UUID;
 import com.example.bean.EventType;
 import com.example.bean.ListItem;
 import com.example.db.STODOSQLiteOpenHelper;
+import com.example.listener.AddButtonListener;
 import com.example.listener.ListItemViewLongClickListener;
 import com.example.view.ListItemView;
 
@@ -66,78 +67,8 @@ public class MainActivity extends Activity {
 	
 	private void linkView(){
 		addButton = (Button)findViewById(R.id.addbutton);
-		setButtonListener();	
+		addButton.setOnClickListener(new AddButtonListener(this, listItems));	
 		listItemViewContainer = (LinearLayout)findViewById(R.id.linearlayout_in_scrollview);
-	}
-	
-	private void setButtonListener(){
-		addButton.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				addAEvent();
-			}
-			
-		});
-	}
-	
-	private void addAEvent(){
-		//create a AlertDialog for adding a new event
-		AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-		alert.setTitle("Add A Event");
-		alert.setMessage("Type your Event Here");
-		
-		LinearLayout linerInDialogue = new LinearLayout(this);
-		linerInDialogue.setOrientation(LinearLayout.VERTICAL);
-		// Set an EditText view to get user input 
-		final EditText input = new EditText(this);
-		input.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-		linerInDialogue.addView(input);
-		// Set a Spinner to  choose a type
-		final Spinner typeMenu = new Spinner(this);
-		setupSpinner(typeMenu);
-		linerInDialogue.addView(typeMenu);
-		
-		alert.setView(linerInDialogue);
-		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		public void onClick(DialogInterface dialog, int whichButton) {
-		  // Create a ListItem and store it
-		  ListItem listItem = new ListItem();
-		  
-		  UUID uuid = UUID.randomUUID();
-		  listItem.setId(uuid.toString()); //set ID
-		  
-		  Editable value = input.getText();
-		  listItem.setItemName(value.toString());
-
-		  String eventType = (String) typeMenu.getSelectedItem();
-		  listItem.setItemType(eventType);
-		  
-		  listItems.add(listItem); //store to memory
-		  sTODOSQLiteOpenHelper.addListItem(listItem); //store to sqlite
-		  
-		  setListItemViewContainer(); //refresh ListItemViewContainer
-		  }
-		});
-
-		alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-		  public void onClick(DialogInterface dialog, int whichButton) {
-		    // Canceled.
-		  }
-		});
-
-		alert.show();
-		// see http://androidsnippets.com/prompt-user-input-with-an-alertdialog
-	}
-	
-	// Set the EventType enum values to Spinner menu
-	private void setupSpinner(Spinner spinner){
-		ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
-		for(EventType type : EventType.values()){
-			spinnerAdapter.add(type.toString());
-		}
-		spinner.setAdapter(spinnerAdapter);
 	}
 	
 	//Add the ListItemView into main screen

@@ -1,6 +1,7 @@
 package com.example.view;
 
 import com.example.bean.ListItem;
+import com.example.listener.CheckBoxListener;
 import com.example.simpletodo.R;
 
 import android.content.Context;
@@ -50,6 +51,8 @@ public class ListItemView extends RelativeLayout {
 		setUpperText(listItem.getItemName());
 		setLowerText(listItem.getItemType());
 		determinCheckBox();
+	    checkBox.setOnCheckedChangeListener(new CheckBoxListener(listItem));
+	    System.out.println(checkBox);
 	}
 	
 	public ListItem getListItem(){
