@@ -104,6 +104,24 @@ public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 		db.close();
 	}
 	
+	//set listItem to complete status
+	public void setItemComplete(ListItem listItem){
+		db = this.getWritableDatabase();
+		ContentValues contentValues = new ContentValues();
+		contentValues.put(ISCOMPLETE, "1");
+		db.update(STODO_TABLE_NAME, contentValues, ITEM_ID + "=?", new String[]{listItem.getId()});
+		db.close();
+	}
+	
+	//set listItem to incomplete status
+	public void setItemIncomplete(ListItem listItem){
+		db = this.getWritableDatabase();
+		ContentValues contentValues = new ContentValues();
+		contentValues.put(ISCOMPLETE, "0");
+		db.update(STODO_TABLE_NAME, contentValues, ITEM_ID + "=?", new String[]{listItem.getId()});
+		db.close();
+	}
+	
 	public void deleteSpecificListItem(String id){
 		db = this.getWritableDatabase();
 		db.delete(STODO_TABLE_NAME, ITEM_ID + "=?", new String[]{id});

@@ -17,10 +17,12 @@ public class ListItemView extends RelativeLayout {
 	private TextView lowerText;
 	private CheckBox checkBox;
 	private ListItem listItem;
+	private Context context;
 	
 	public ListItemView(Context context, AttributeSet attrs, ListItem listItem) {
 	    super(context, attrs);
 	    LayoutInflater.from(context).inflate(R.layout.list_item, this, true);
+	    this.context = context;
 	    
 	    upperText = (TextView)findViewById(R.id.upper_text);
 	    lowerText = (TextView)findViewById(R.id.lower_text);
@@ -51,7 +53,7 @@ public class ListItemView extends RelativeLayout {
 		setUpperText(listItem.getItemName());
 		setLowerText(listItem.getItemType());
 		determinCheckBox();
-	    checkBox.setOnCheckedChangeListener(new CheckBoxListener(listItem));
+	    checkBox.setOnCheckedChangeListener(new CheckBoxListener(listItem, context));
 	    System.out.println(checkBox);
 	}
 	
