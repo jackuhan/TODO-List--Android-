@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <receiver 
-            android:name=".SimpleTODOAppWidgetProvider">
+            android:name="com.example.appwidget.SimpleTODOAppWidgetProvider">
 			<meta-data 
     			android:name="android.appwidget.provider"
 				android:resource="@layout/appwidget_provider" />

@@ -24,10 +24,7 @@ public class SimpleTODOAppWidgetProvider extends AppWidgetProvider {
 	
 	static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
 		int appWidgetId) {
-		CharSequence text;
-		text = "www.jollen.org";
 		RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget_main);
-		views.setTextViewText(R.id.appwidget_text, text);
 		appWidgetManager.updateAppWidget(appWidgetId, views);
 	}
 
