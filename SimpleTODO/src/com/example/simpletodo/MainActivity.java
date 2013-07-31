@@ -2,9 +2,6 @@ package com.example.simpletodo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-
-import com.example.bean.EventType;
 import com.example.bean.ListItem;
 import com.example.db.STODOSQLiteOpenHelper;
 import com.example.listener.AddButtonListener;
@@ -13,21 +10,9 @@ import com.example.view.ListItemView;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.text.Editable;
-import android.util.Log;
 import android.view.Menu;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	//data
