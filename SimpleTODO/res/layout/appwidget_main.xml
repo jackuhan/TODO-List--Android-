@@ -9,15 +9,9 @@
            android:layout_height="wrap_content"
            android:text="Add A Event"
            />
-       <ScrollView
+       <ListView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
-            <LinearLayout 
-                  android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical"
-                  android:id="@+id/appwidget_linearlayout_in_scrollview">
-                  <!-- Content here -->
-            </LinearLayout>
-      </ScrollView>
+            
+      </ListView>
  </LinearLayout>
