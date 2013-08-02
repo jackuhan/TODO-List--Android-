@@ -2,8 +2,10 @@ package com.example.simpletodo;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.example.bean.ListItem;
 import com.example.db.STODOSQLiteOpenHelper;
+import com.example.dummydata.DummyItemFactory;
 import com.example.listener.AddButtonListener;
 import com.example.listener.ListItemViewLongClickListener;
 import com.example.view.ListItemView;
@@ -37,10 +39,10 @@ public class MainActivity extends Activity {
 		initiateItemViewContainer();
 		setListItemViewContainer();
 		
-		//test
-//		sTODOSQLiteOpenHelper.deleteAllData();
-
-
+		//test "ONLY USE WHEN YOU FIRST INSTALL THE APPLICATION!!"
+		DummyItemFactory df = new DummyItemFactory(this, listItems);
+		df.putDummyItemContent();
+		setListItemViewContainer();
 	}
 
 	@Override

@@ -39,6 +39,5 @@ public class ListItem {
 		this.id = id;
 	}
 	
-	
 
 }

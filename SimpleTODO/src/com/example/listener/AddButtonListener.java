@@ -10,7 +10,6 @@ import com.example.simpletodo.MainActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.text.Editable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -57,17 +56,8 @@ public class AddButtonListener implements OnClickListener {
 		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 		public void onClick(DialogInterface dialog, int whichButton) {
 		  // Create a ListItem and store it
-		  ListItem listItem = new ListItem();
-		  
-		  UUID uuid = UUID.randomUUID();
-		  listItem.setId(uuid.toString()); //set ID
-		  
-		  Editable value = input.getText();
-		  listItem.setItemName(value.toString());
+		  ListItem listItem = newListItem(false, (String) typeMenu.getSelectedItem(), input.getText().toString());
 
-		  String eventType = (String) typeMenu.getSelectedItem();
-		  listItem.setItemType(eventType);
-		  
 		  listItems.add(listItem); //store to memory
 		  STODOSQLiteOpenHelper sTODOSQLiteOpenHelper = new STODOSQLiteOpenHelper(mainActivity);
 		  sTODOSQLiteOpenHelper.addListItem(listItem); //store to sqlite
@@ -84,6 +74,15 @@ public class AddButtonListener implements OnClickListener {
 
 		alert.show();
 		// see http://androidsnippets.com/prompt-user-input-with-an-alertdialog
+	}
+	
+	private ListItem newListItem(boolean iscomplete, String type, String taskName){
+		ListItem lI = new ListItem();
+		lI.setComplete(iscomplete);
+		lI.setItemType(type);
+		lI.setId(UUID.randomUUID().toString());
+		lI.setItemName(taskName);	
+		return lI;
 	}
 	
 	// Set the EventType enum values to Spinner menu
