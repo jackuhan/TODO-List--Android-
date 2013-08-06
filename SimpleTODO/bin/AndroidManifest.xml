@@ -30,6 +30,8 @@
 			<intent-filter>
 			<action 
     			android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+			<action 
+			    android:name="com.myname.myapp.MyAppWidgetProvider.ADDBUTTON_CLICK" />
 			</intent-filter>
 		</receiver>
     </application>
