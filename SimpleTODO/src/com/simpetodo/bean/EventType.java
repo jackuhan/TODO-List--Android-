@@ -1,5 +1,5 @@
 package com.simpetodo.bean;
 
 public enum EventType {
-	DAILY, GOAL
+	DAILY, GOAL, TASK
 }
