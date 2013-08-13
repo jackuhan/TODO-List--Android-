@@ -15,11 +15,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 	
 	private static final int STODO_VERSION = 2;
+	
     private static final String STODO_TABLE_NAME = "STODO";
+    //List Item attributes
     private static final String ITEM_ID = "ITEM_ID";
     private static final String ITEM_NAME = "ITEM_NAME";
     private static final String ITEM_TYPE = "ITEM_TYPE";
     private static final String ISCOMPLETE = "ISCOMPLETE";
+    
     private SQLiteDatabase db = null;
     
     //List Item table
