@@ -26,7 +26,7 @@ public final class R {
     public static final class id {
         public static final int action_settings=0x7f080006;
         public static final int addbutton=0x7f080000;
-        public static final int appwidget_addbutton=0x7f080002;
+        public static final int appwidget_listview=0x7f080002;
         public static final int checkbox=0x7f080003;
         public static final int linearlayout_in_scrollview=0x7f080001;
         public static final int lower_text=0x7f080005;

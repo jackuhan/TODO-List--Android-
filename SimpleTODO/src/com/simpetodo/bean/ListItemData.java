@@ -20,6 +20,9 @@ public class ListItemData {
 	}
 
 	public static List<ListItem> getListItems() {
+		if(listItems == null){
+			listItems = new ArrayList<ListItem>();
+		}
 		return listItems;
 	}
 
