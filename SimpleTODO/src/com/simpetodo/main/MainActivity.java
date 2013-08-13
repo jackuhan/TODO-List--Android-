@@ -14,24 +14,21 @@ public class MainActivity extends Activity {
 	
 	//View
 	private MainView mainView;
-	//SQLHelper
-	private STODOSQLiteOpenHelper sTODOSQLiteOpenHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//initialize memory data 
-		sTODOSQLiteOpenHelper = new STODOSQLiteOpenHelper(this);
-		ListItemData listItemData = new ListItemData(sTODOSQLiteOpenHelper);
+		//initialize memory data
+		ListItemData listItemData = new ListItemData(this);
 		listItemData.initialListItemData();
 		//set main view
 		mainView = new MainView(this, null);
 		setContentView(mainView);
 		
 		//test "ONLY USE WHEN YOU FIRST INSTALL THE APPLICATION!!"
-//		DummyItemFactory df = new DummyItemFactory(this, ListItemData.getListItems());
-//		df.putDummyItemContent();
-//		mainView.refreshItemViews();
+		DummyItemFactory df = new DummyItemFactory(this, ListItemData.getListItems());
+		df.putDummyItemContent();
+		mainView.refreshItemViews();
 	}
 
 	@Override

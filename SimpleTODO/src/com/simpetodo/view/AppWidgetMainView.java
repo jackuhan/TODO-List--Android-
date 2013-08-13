@@ -6,9 +6,11 @@ import java.util.List;
 import com.example.simpletodo.R;
 import com.simpetodo.bean.ListItem;
 import com.simpetodo.bean.ListItemData;
+import com.simpetodo.main.MainActivity;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,6 +38,7 @@ public class AppWidgetMainView extends RelativeLayout {
 	}
 	
 	private void initiateListView(){
+		new ListItemData(new MainActivity());
 		List<ListItem> listItems = ListItemData.getListItems();
 		ArrayList<String> listItems_String = new ArrayList<String>();
 		for(ListItem listItem : listItems){
