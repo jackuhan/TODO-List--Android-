@@ -26,9 +26,9 @@ public class MainActivity extends Activity {
 		setContentView(mainView);
 		
 		//test "ONLY USE WHEN YOU FIRST INSTALL THE APPLICATION!!"
-		DummyItemFactory df = new DummyItemFactory(this, ListItemData.getListItems());
-		df.putDummyItemContent();
-		mainView.refreshItemViews();
+//		DummyItemFactory df = new DummyItemFactory(this, ListItemData.getListItems());
+//		df.putDummyItemContent();
+//		mainView.refreshItemViews();
 	}
 
 	@Override

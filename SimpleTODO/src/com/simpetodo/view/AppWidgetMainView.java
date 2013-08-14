@@ -34,7 +34,7 @@ public class AppWidgetMainView extends RelativeLayout {
 	
 	private void linkView(){
 		listView = (ListView)findViewById(R.id.appwidget_listview);
-//		addButton = (Button)findViewById(R.id.appwidget_addbutton);
+		addButton = (Button)findViewById(R.id.appwidget_addbutton);
 	}
 	
 	private void initiateListView(){
