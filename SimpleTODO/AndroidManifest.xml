@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="16"
         android:targetSdkVersion="16" />
 
     <application
@@ -22,18 +22,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <!-- For AppWidget -->
         <receiver 
             android:name="com.simpletodo.appwidget.SimpleTODOAppWidgetProvider">
 			<meta-data 
     			android:name="android.appwidget.provider"
 				android:resource="@layout/appwidget_provider" />
 			<intent-filter>
+			<!-- Add actions caught by the Receiver here -->
 			<action 
     			android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-			<action 
-    			android:name="android.appwidget.action.TEST_ACTIVITY" />
 			</intent-filter>
 		</receiver>
+		<!-- Add RemoteViewsServices here -->
+		<!-- Add the full name, including "package name!" -->
+		<service
+            android:name="com.simpletodo.appwidget.service.ListViewAdaptorService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>

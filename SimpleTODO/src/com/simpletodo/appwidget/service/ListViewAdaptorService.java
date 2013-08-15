@@ -2,12 +2,14 @@ package com.simpletodo.appwidget.service;
 
 import com.simpletodo.bean.ListItemData;
 import com.simpletodo.main.MainActivity;
+
 import android.annotation.SuppressLint;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViewsService;
 
-@SuppressLint("NewApi")
+
 public class ListViewAdaptorService extends RemoteViewsService  {
 
 	@Override
@@ -18,7 +20,7 @@ public class ListViewAdaptorService extends RemoteViewsService  {
 		
 		//initiate ListItemData
 		new ListItemData(new MainActivity());
-		
+		Log.d("TEST", "Calling onGetViewFactory()");
 		return (new ListProvider(ListItemData.getListItems(), this.getApplicationContext(), intent));
 	}
 
