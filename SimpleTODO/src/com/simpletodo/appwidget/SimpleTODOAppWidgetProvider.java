@@ -19,33 +19,25 @@ public class SimpleTODOAppWidgetProvider extends AppWidgetProvider {
 	//Add the new action String (Maybe for Button or Icon)
 //	private static String testIntent = "";
 	
+	private Context context;
+	private AppWidgetManager appWidgetManager;
+	private int[] appWidgetIds;
+	
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-
+		super.onUpdate(context, appWidgetManager, appWidgetIds);
 		final int N = appWidgetIds.length;
 		for (int i=0; i<N; i++) {
-			int appWidgetId = appWidgetIds[i];
+//			int appWidgetId = appWidgetIds[i];
 //			updateAppWidget(context, appWidgetManager, appWidgetId);		
 			RemoteViews remoteViews = updateWidgetListView(context,
 					appWidgetIds[i]);
 			appWidgetManager.updateAppWidget(appWidgetIds[i], remoteViews);
-		}
+			Log.d("TEST", appWidgetIds.toString() + " from provider");
+		}	
 		
-		super.onUpdate(context, appWidgetManager, appWidgetIds);
-	}
-		
-	public void onDeleted(Context context, int[] appWidgetIds) {
 	}
 	
-	 @Override
-	 public void onEnabled(Context context) {
-		 super.onEnabled(context);
-		 AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-		 Intent intent = new Intent(context, SimpleTODOAppWidgetProvider.class);
-		 PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
-		 //After after 3 seconds
-		 am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 1000 * 3, 1000 , pi);
-	 }
 	
 //	private void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
 //		int appWidgetId) {
@@ -67,7 +59,7 @@ public class SimpleTODOAppWidgetProvider extends AppWidgetProvider {
 		super.onReceive(context, intent);
 		//TODO
 		//Add something to do here with corresponding action
-//		if(intent.getAction().equals("ContactWidgetUpdate")){
+//		if(intent.getAction().equals("APPWIDGET_UPDATE")){
 //
 //		}	
 	}
@@ -90,7 +82,6 @@ public class SimpleTODOAppWidgetProvider extends AppWidgetProvider {
 				svcIntent);
 		//setting an empty view in case of no data
 		remoteViews.setEmptyView(R.id.appwidget_listview, R.id.appwidget_addbutton);
-		
 		
 		return remoteViews;
 	}
