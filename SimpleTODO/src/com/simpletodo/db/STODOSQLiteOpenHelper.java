@@ -3,6 +3,7 @@ package com.simpletodo.db;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.simpletodo.appwidget.AppWidgetUpdater;
 import com.simpletodo.bean.ListItem;
 
 import android.content.ContentValues;
@@ -11,9 +12,11 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 	
+	private Context context;
 	private static final int STODO_VERSION = 2;
 	
     private static final String STODO_TABLE_NAME = "STODO";
@@ -35,6 +38,7 @@ public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 	
 	public STODOSQLiteOpenHelper(Context context) {
         super(context, STODO_TABLE_NAME, null, STODO_VERSION);
+        this.context = context;
     }
 
     @Override
@@ -70,6 +74,9 @@ public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 	    // Inserting Row
 	    db.insert(STODO_TABLE_NAME, null, values);
 	    db.close(); // Closing database connection
+	    
+	    //update
+	    update();
 	}
 	
 	public List<ListItem> getAllListItem(){
@@ -136,4 +143,15 @@ public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 		db.delete(STODO_TABLE_NAME, null, null);
 		db.close();
 	}
+	
+	private void update(){
+	    Log.d("TEST", "update() executed!");
+		updateAppWidget();
+	}
+	
+	private void updateAppWidget(){
+		AppWidgetUpdater appWidgetUpdater = new AppWidgetUpdater(context);
+		appWidgetUpdater.updateAppWidget();
+	}
+
 }

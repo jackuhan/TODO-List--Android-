@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Context;
 
+import com.simpletodo.appwidget.AppWidgetUpdater;
 import com.simpletodo.db.STODOSQLiteOpenHelper;
 
 public class ListItemData {
@@ -31,5 +32,4 @@ public class ListItemData {
 	public static void setListItems(List<ListItem> listItems) {
 		ListItemData.listItems = listItems;
 	}
-
 }
