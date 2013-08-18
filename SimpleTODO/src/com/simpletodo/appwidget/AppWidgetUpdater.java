@@ -18,7 +18,6 @@ public class AppWidgetUpdater {
 		ComponentName appWidget = new ComponentName(context, SimpleTODOAppWidgetProvider.class);
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 		int[] appWidgetIds = appWidgetManager.getAppWidgetIds(appWidget);
-		Log.d("TEST", appWidgetIds.toString());
 		
 		Intent intent = new Intent(context, SimpleTODOAppWidgetProvider.class);
 		intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
@@ -28,8 +27,6 @@ public class AppWidgetUpdater {
 
 		intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,appWidgetIds);
 		context.sendBroadcast(intent);
-		
-//		new SimpleTODOAppWidgetProvider().onUpdate(context, appWidgetManager, appWidgetIds);
 	}
 
 

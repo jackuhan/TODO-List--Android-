@@ -79,6 +79,13 @@ public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 	    update();
 	}
 	
+	public void deleteSpecificListItem(String id){
+		db = this.getWritableDatabase();
+		db.delete(STODO_TABLE_NAME, ITEM_ID + "=?", new String[]{id});
+		db.close();
+		update();
+	}
+	
 	public List<ListItem> getAllListItem(){
 		List<ListItem> listItems = new ArrayList<ListItem>();
 		
@@ -132,26 +139,24 @@ public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 		db.close();
 	}
 	
-	public void deleteSpecificListItem(String id){
-		db = this.getWritableDatabase();
-		db.delete(STODO_TABLE_NAME, ITEM_ID + "=?", new String[]{id});
-		db.close();
-	}
-	
 	public void deleteAllData(){
 		SQLiteDatabase db = this.getReadableDatabase();
 		db.delete(STODO_TABLE_NAME, null, null);
 		db.close();
 	}
 	
+	//notify AddWidget to update RemoteViews
 	private void update(){
 	    Log.d("TEST", "update() executed!");
 		updateAppWidget();
 	}
 	
 	private void updateAppWidget(){
-		AppWidgetUpdater appWidgetUpdater = new AppWidgetUpdater(context);
+		AppWidgetUpdater appWidgetUpdater = new AppWidgetUpdater(context.getApplicationContext());
 		appWidgetUpdater.updateAppWidget();
 	}
+	
+	//TODO
+	//should notify Activity layout at here too (Observer)
 
 }

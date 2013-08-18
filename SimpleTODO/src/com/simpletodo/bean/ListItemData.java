@@ -5,7 +5,6 @@ import java.util.List;
 
 import android.content.Context;
 
-import com.simpletodo.appwidget.AppWidgetUpdater;
 import com.simpletodo.db.STODOSQLiteOpenHelper;
 
 public class ListItemData {

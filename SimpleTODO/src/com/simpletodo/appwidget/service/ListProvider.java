@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.simpletodo.R;
 import com.simpletodo.bean.ListItem;
+import com.simpletodo.bean.ListItemData;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
@@ -79,7 +80,7 @@ public class ListProvider implements RemoteViewsFactory {
 	@Override
 	public void onDataSetChanged() {
 		// TODO Auto-generated method stub
-		
+		listItems = ListItemData.getListItems();
 	}
 
 	@Override

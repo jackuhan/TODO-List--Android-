@@ -6,6 +6,7 @@ import com.simpletodo.listener.CheckBoxListener;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
@@ -21,8 +22,9 @@ public class ListItemView extends RelativeLayout {
 	
 	public ListItemView(Context context, AttributeSet attrs, ListItem listItem) {
 	    super(context, attrs);
-	    LayoutInflater.from(context).inflate(R.layout.list_item, this, true);
 	    this.context = context;
+	    
+	    LayoutInflater.from(context).inflate(R.layout.list_item, this, true);
 	    
 	    upperText = (TextView)findViewById(R.id.upper_text);
 	    lowerText = (TextView)findViewById(R.id.lower_text);
