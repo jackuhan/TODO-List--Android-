@@ -43,7 +43,7 @@ public class ListItemViewLongClickListener implements OnLongClickListener {
 						for(int i = 0; i<listItems.size(); i++){
 							if(listItem.getId() == listItems.get(i).getId()){
 								listItems.remove(listItems.get(i));
-								STODOSQLiteOpenHelper sTODOSQLiteOpenHelper = new STODOSQLiteOpenHelper(context);
+								STODOSQLiteOpenHelper sTODOSQLiteOpenHelper = MainActivity.getSTODOSQLiteOpenHelper();
 								sTODOSQLiteOpenHelper.deleteSpecificListItem(listItemId);
 								MainActivity activity = (MainActivity)context;
 								activity.getMainView().refreshItemViews(); //refresh view

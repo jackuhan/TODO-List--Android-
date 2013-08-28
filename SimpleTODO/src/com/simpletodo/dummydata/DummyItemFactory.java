@@ -8,6 +8,7 @@ import android.app.Activity;
 import com.simpletodo.bean.EventType;
 import com.simpletodo.bean.ListItem;
 import com.simpletodo.db.STODOSQLiteOpenHelper;
+import com.simpletodo.main.MainActivity;
 
 public class DummyItemFactory {
 	
@@ -35,7 +36,7 @@ public class DummyItemFactory {
 		lI.setId(UUID.randomUUID().toString());
 		lI.setItemName(taskName);
 		lI.setItemType(type);
-		STODOSQLiteOpenHelper sTODOSQLiteOpenHelper = new STODOSQLiteOpenHelper(mainActivity);
+		STODOSQLiteOpenHelper sTODOSQLiteOpenHelper = MainActivity.getSTODOSQLiteOpenHelper();
 		sTODOSQLiteOpenHelper.addListItem(lI); //store to sqlite
 		return lI;
 	}

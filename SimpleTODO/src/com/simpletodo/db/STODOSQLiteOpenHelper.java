@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.simpletodo.appwidget.AppWidgetUpdater;
 import com.simpletodo.bean.ListItem;
+import com.simpletodo.main.MainActivity;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,9 +15,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+//This Class is used as a Observable Class in the Observer Pattern
 public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 	
-	private Context context;
+	private MainActivity mainActivity;
 	private static final int STODO_VERSION = 2;
 	
     private static final String STODO_TABLE_NAME = "STODO";
@@ -38,7 +40,7 @@ public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 	
 	public STODOSQLiteOpenHelper(Context context) {
         super(context, STODO_TABLE_NAME, null, STODO_VERSION);
-        this.context = context;
+        mainActivity = (MainActivity) context;
     }
 
     @Override
@@ -149,11 +151,17 @@ public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 	private void update(){
 	    Log.d("TEST", "update() executed!");
 		updateAppWidget();
+		updateListItemViewList();
 	}
 	
 	private void updateAppWidget(){
-		AppWidgetUpdater appWidgetUpdater = new AppWidgetUpdater(context.getApplicationContext());
+		AppWidgetUpdater appWidgetUpdater = new AppWidgetUpdater(mainActivity.getApplicationContext());
 		appWidgetUpdater.updateAppWidget();
+	}
+	
+	private void updateListItemViewList(){
+		//refresh ListItemViewContainer
+		mainActivity.getMainView().refreshItemViews(); 
 	}
 	
 	//TODO

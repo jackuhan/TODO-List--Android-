@@ -59,10 +59,8 @@ public class AddButtonListener implements OnClickListener {
 		  ListItem listItem = newListItem(false, (String) typeMenu.getSelectedItem(), input.getText().toString());
 
 		  listItems.add(listItem); //store to memory
-		  STODOSQLiteOpenHelper sTODOSQLiteOpenHelper = new STODOSQLiteOpenHelper(mainActivity);
-		  sTODOSQLiteOpenHelper.addListItem(listItem); //store to sqlite
-		  
-		  mainActivity.getMainView().refreshItemViews(); //refresh ListItemViewContainer
+		  STODOSQLiteOpenHelper sTODOSQLiteOpenHelper = MainActivity.getSTODOSQLiteOpenHelper();
+		  sTODOSQLiteOpenHelper.addListItem(listItem); //store to SQLite
 		  }
 		});
 

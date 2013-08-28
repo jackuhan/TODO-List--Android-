@@ -14,10 +14,14 @@ public class MainActivity extends Activity {
 	
 	//View
 	private MainView mainView;
+	//
+	private static STODOSQLiteOpenHelper sTODOSQLiteOpenHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//create sTODOSQLiteOpenHelper and hold only one instance in this application
+		sTODOSQLiteOpenHelper = new STODOSQLiteOpenHelper(this);
 		//initialize memory data
 		ListItemData listItemData = new ListItemData(this);
 		listItemData.initialListItemData();
@@ -40,6 +44,10 @@ public class MainActivity extends Activity {
 	
 	public MainView getMainView(){
 		return mainView;
+	}
+	
+	public static STODOSQLiteOpenHelper getSTODOSQLiteOpenHelper(){
+		return sTODOSQLiteOpenHelper;
 	}
 
 

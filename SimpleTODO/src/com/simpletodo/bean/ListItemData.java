@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.Context;
 
 import com.simpletodo.db.STODOSQLiteOpenHelper;
+import com.simpletodo.main.MainActivity;
 
 public class ListItemData {
 	
@@ -13,7 +14,7 @@ public class ListItemData {
 	private STODOSQLiteOpenHelper sTODOSQLiteOpenHelper;
 	
 	public ListItemData(Context context){
-		this.sTODOSQLiteOpenHelper = new STODOSQLiteOpenHelper(context);
+		this.sTODOSQLiteOpenHelper = MainActivity.getSTODOSQLiteOpenHelper();
 	}
 	
 	public void initialListItemData(){

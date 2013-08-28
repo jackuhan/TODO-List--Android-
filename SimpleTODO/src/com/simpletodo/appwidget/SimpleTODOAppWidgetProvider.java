@@ -23,7 +23,7 @@ public class SimpleTODOAppWidgetProvider extends AppWidgetProvider {
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
-
+		Log.d("TEST", "call onUpdate()");
 		//make sure there is only one RemoteViews instance,
 		//otherwise it'll cause some problem after re-enter
 		//the activity
@@ -35,8 +35,12 @@ public class SimpleTODOAppWidgetProvider extends AppWidgetProvider {
 		for (int i=0; i<N; i++) {
 			setListView(context,appWidgetIds[i]);
 			//use this to update the ListView by notifying the adapter
-			appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds[i], R.id.appwidget_listview);
+			
+			//After my testing, notifyAppWidgetViewDataChanged() most
+			//be after updateAppWidget() or the ListView in RemoteView will
+			//not be updated sometime
 			appWidgetManager.updateAppWidget(appWidgetIds[i], remoteViews);
+			appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds[i], R.id.appwidget_listview);
 		}		
 	}
 	
@@ -52,7 +56,7 @@ public class SimpleTODOAppWidgetProvider extends AppWidgetProvider {
 	}
 	
 	private void setListView(Context context, int appWidgetId){
-		Log.d("TEST", "calling setListView!!!!");
+		Log.d("TEST", "call setListView()");
 		
 		//RemoteViews Service needed to provide adapter for ListView
 		Intent svcIntent = new Intent(context, ListViewAdaptorService.class);
