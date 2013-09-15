@@ -40,6 +40,9 @@
 		<service
             android:name="com.simpletodo.appwidget.service.ListViewAdaptorService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
+		<service 
+		    android:enabled="true" 
+		    android:name="com.simpletodo.service.AccessSQLiteService" />
     </application>
 
 </manifest>

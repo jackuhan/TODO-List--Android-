@@ -18,7 +18,7 @@ import android.util.Log;
 //This Class is used as a Observable Class in the Observer Pattern
 public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 	
-	private MainActivity mainActivity;
+	private Context context;
 	private static final int STODO_VERSION = 2;
 	
     private static final String STODO_TABLE_NAME = "STODO";
@@ -40,7 +40,7 @@ public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 	
 	public STODOSQLiteOpenHelper(Context context) {
         super(context, STODO_TABLE_NAME, null, STODO_VERSION);
-        mainActivity = (MainActivity) context;
+        this.context = context;
     }
 
     @Override
@@ -155,13 +155,15 @@ public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 	}
 	
 	private void updateAppWidget(){
-		AppWidgetUpdater appWidgetUpdater = new AppWidgetUpdater(mainActivity.getApplicationContext());
+		AppWidgetUpdater appWidgetUpdater = new AppWidgetUpdater(context);
 		appWidgetUpdater.updateAppWidget();
 	}
 	
 	private void updateListItemViewList(){
 		//refresh ListItemViewContainer
-		mainActivity.getMainView().refreshItemViews(); 
+		if(MainActivity.getMainView() != null){
+			MainActivity.getMainView().refreshItemViews(); 
+		}
 	}
 	
 	//TODO
