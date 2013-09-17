@@ -15,6 +15,7 @@ public class AppWidgetUpdater {
 	}
 	
 	public void updateAppWidget(){
+		Log.d("TEST", "updateAppWidget() was called!!");
 		ComponentName appWidget = new ComponentName(context, SimpleTODOAppWidgetProvider.class);
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 		int[] appWidgetIds = appWidgetManager.getAppWidgetIds(appWidget);

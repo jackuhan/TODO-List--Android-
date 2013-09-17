@@ -9,7 +9,6 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 public class SimpleTODOAppWidgetProvider extends AppWidgetProvider {
@@ -23,7 +22,6 @@ public class SimpleTODOAppWidgetProvider extends AppWidgetProvider {
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
-		Log.d("TEST", "call onUpdate()");
 		//make sure there is only one RemoteViews instance,
 		//otherwise it'll cause some problem after re-enter
 		//the activity
@@ -56,11 +54,9 @@ public class SimpleTODOAppWidgetProvider extends AppWidgetProvider {
 	}
 	
 	private void setListView(Context context, int appWidgetId){
-		Log.d("TEST", "call setListView()");
 		
 		//RemoteViews Service needed to provide adapter for ListView
 		Intent svcIntent = new Intent(context, ListViewAdaptorService.class);
-		Log.d("TEST", "svcIntent: " + svcIntent.toString());
 		//passing app widget id to that RemoteViews Service
 		svcIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
 		//setting a unique Uri to the intent
@@ -69,8 +65,7 @@ public class SimpleTODOAppWidgetProvider extends AppWidgetProvider {
 		//setting adapter to listview of the widget
 		remoteViews.setRemoteAdapter(R.id.appwidget_listview, svcIntent);
 		//setting an empty view in case of no data
-		remoteViews.setEmptyView(R.id.appwidget_listview, R.id.appwidget_addbutton);
-		Log.d("TEST", "remoteViews: " + remoteViews.toString());
+		remoteViews.setEmptyView(R.id.appwidget_listview, R.id.appwidget_listview);
 	}
 
 

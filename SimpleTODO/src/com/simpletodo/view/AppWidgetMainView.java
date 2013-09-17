@@ -21,7 +21,6 @@ import android.widget.RelativeLayout;
 public class AppWidgetMainView extends RelativeLayout {
 	
 	private ListView listView;
-	private Button addButton;
 	private Context context;
 
 	public AppWidgetMainView(Context context, AttributeSet attrs) {
@@ -34,7 +33,6 @@ public class AppWidgetMainView extends RelativeLayout {
 	
 	private void linkView(){
 		listView = (ListView)findViewById(R.id.appwidget_listview);
-		addButton = (Button)findViewById(R.id.appwidget_addbutton);
 	}
 	
 	private void initiateListView(){

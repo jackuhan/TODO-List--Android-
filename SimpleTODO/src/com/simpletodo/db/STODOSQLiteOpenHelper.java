@@ -13,7 +13,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 //This Class is used as a Observable Class in the Observer Pattern
 public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
@@ -40,7 +39,9 @@ public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 	
 	public STODOSQLiteOpenHelper(Context context) {
         super(context, STODO_TABLE_NAME, null, STODO_VERSION);
-        mainActivity = (MainActivity) context;
+        if(context instanceof MainActivity){
+        	this.mainActivity = (MainActivity)context;
+        }
     }
 
     @Override
@@ -58,6 +59,11 @@ public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 		db.execSQL("DROP TABLE IF EXISTS " + STODO_TABLE_NAME);
 		onCreate(db);
+	}
+	
+	//Passing the Observers in mainActivity
+	public void getMainActivityObserver(MainActivity mainActivity){
+		this.mainActivity = mainActivity;
 	}
 	
 	public void addListItem(ListItem listItem){
@@ -149,7 +155,6 @@ public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 	
 	//notify AddWidget to update RemoteViews
 	private void update(){
-	    Log.d("TEST", "update() executed!");
 		updateAppWidget();
 		updateListItemViewList();
 	}
@@ -160,8 +165,11 @@ public class STODOSQLiteOpenHelper extends SQLiteOpenHelper {
 	}
 	
 	private void updateListItemViewList(){
-		//refresh ListItemViewContainer
-		mainActivity.getMainView().refreshItemViews(); 
+		
+		if(mainActivity != null){ //make sure the mainActivity is in running
+			//refresh ListItemViewContainer
+			mainActivity.getMainView().refreshItemViews(); 
+		}
 	}
 	
 	//TODO

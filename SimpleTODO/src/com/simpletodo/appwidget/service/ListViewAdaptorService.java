@@ -1,12 +1,11 @@
 package com.simpletodo.appwidget.service;
 
-import com.simpletodo.bean.ListItemData;
-import com.simpletodo.main.MainActivity;
+import java.util.List;
 
-import android.annotation.SuppressLint;
+import com.simpletodo.bean.ListItem;
+import com.simpletodo.db.STODOSQLiteOpenHelper;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.RemoteViewsService;
 
 
@@ -18,10 +17,11 @@ public class ListViewAdaptorService extends RemoteViewsService  {
 				AppWidgetManager.EXTRA_APPWIDGET_ID,
 				AppWidgetManager.INVALID_APPWIDGET_ID);
 		
-		//initiate ListItemData
-		new ListItemData(new MainActivity());
-		Log.d("TEST", "Calling onGetViewFactory()");
-		return (new ListProvider(ListItemData.getListItems(), this.getApplicationContext(), intent));
+		//get SQLiteOpenHelper
+		STODOSQLiteOpenHelper sTODOSQLiteOpenHelper  = new STODOSQLiteOpenHelper(this);
+		List<ListItem> listItems = sTODOSQLiteOpenHelper.getAllListItem();
+		//return the RemoteView ListView Adaptor
+		return (new ListProvider(listItems, this.getApplicationContext(), intent));
 	}
 
 }

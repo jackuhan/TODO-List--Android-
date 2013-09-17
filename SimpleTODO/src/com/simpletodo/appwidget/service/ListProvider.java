@@ -5,11 +5,11 @@ import java.util.List;
 import com.example.simpletodo.R;
 import com.simpletodo.bean.ListItem;
 import com.simpletodo.bean.ListItemData;
+import com.simpletodo.db.STODOSQLiteOpenHelper;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService.RemoteViewsFactory;
 
@@ -26,11 +26,6 @@ public class ListProvider implements RemoteViewsFactory {
 				AppWidgetManager.INVALID_APPWIDGET_ID);
 		
 		this.listItems = listItems;
-		
-		Log.d("TEST", "Calling Constructor");
-		for(ListItem listItem : listItems){
-			Log.d("TEST", listItem.getId());
-		}
 	}
 
 	@Override
@@ -45,7 +40,6 @@ public class ListProvider implements RemoteViewsFactory {
 
 	@Override
 	public RemoteViews getLoadingView() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -73,14 +67,14 @@ public class ListProvider implements RemoteViewsFactory {
 
 	@Override
 	public void onCreate() {
-		// TODO Auto-generated method stub
-		
+		STODOSQLiteOpenHelper sTODOSQLiteOpenHelper = new STODOSQLiteOpenHelper(context);
+		listItems = sTODOSQLiteOpenHelper.getAllListItem();
 	}
 
 	@Override
 	public void onDataSetChanged() {
-		// TODO Auto-generated method stub
-		listItems = ListItemData.getListItems();
+		STODOSQLiteOpenHelper sTODOSQLiteOpenHelper = new STODOSQLiteOpenHelper(context);
+		listItems = sTODOSQLiteOpenHelper.getAllListItem();
 	}
 
 	@Override
