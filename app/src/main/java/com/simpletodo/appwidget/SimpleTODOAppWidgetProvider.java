@@ -6,6 +6,7 @@ import com.simpletodo.appwidget.service.ListViewAdaptorService;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -48,8 +49,13 @@ public class SimpleTODOAppWidgetProvider extends AppWidgetProvider {
 		super.onReceive(context, intent);
 		//TODO
 		//Add something to do here with corresponding action
-		if(intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE")){
 
+		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+		ComponentName thisAppWidget = new ComponentName(context.getPackageName(), SimpleTODOAppWidgetProvider.class.getName());
+		int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisAppWidget);
+
+		if(intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE")){
+			onUpdate(context, appWidgetManager, appWidgetIds);
 		}
 	}
 	

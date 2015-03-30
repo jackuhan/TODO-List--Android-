@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SimpleTODO</string>
+    <string name="app_name">ToDOListWidget</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+
+    <string name="tasks">Tasks</string>
+    <string name="alltasks">All Tasks</string>
 
 </resources>

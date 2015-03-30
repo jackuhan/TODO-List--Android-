@@ -21,6 +21,7 @@ import android.widget.RelativeLayout;
 public class AppWidgetMainView extends RelativeLayout {
 	
 	private ListView listView;
+//	private RelativeLayout header;
 	private Context context;
 
 	public AppWidgetMainView(Context context, AttributeSet attrs) {
@@ -32,7 +33,8 @@ public class AppWidgetMainView extends RelativeLayout {
 	}
 	
 	private void linkView(){
-		listView = (ListView)findViewById(R.id.appwidget_listview);
+		listView = (ListView) findViewById(R.id.appwidget_listview);
+//		header = (RelativeLayout) findViewById(R.id.rv_header);
 	}
 	
 	private void initiateListView(){

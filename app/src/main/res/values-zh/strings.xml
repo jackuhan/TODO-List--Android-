@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ToDOLis控件</string>
+    <string name="action_settings">设置</string>
+
+    <string name="tasks">任务</string>
+    <string name="alltasks">所有任务</string>
+</resources>

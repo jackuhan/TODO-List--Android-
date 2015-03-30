@@ -7,8 +7,9 @@
     <!-- From: file:/D:/workplace/someleanandroid3/demo/widget/SimpleTODO-github/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>
-    <string name="app_name">SimpleTODO</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="alltasks">All Tasks</string>
+    <string name="app_name">ToDOListWidget</string>
+    <string name="tasks">Tasks</string>
     <!-- From: file:/D:/workplace/someleanandroid3/demo/widget/SimpleTODO-github/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light">
