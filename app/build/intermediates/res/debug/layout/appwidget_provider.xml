@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+		android:minWidth="110dp"
+		android:minHeight="110dp"
+		android:initialLayout="@layout/appwidget_main"
+		android:resizeMode="vertical|horizontal" 
+	>
+</appwidget-provider><!-- From: file:/D:/workplace/someleanandroid3/demo/widget/SimpleTODO-github/app/src/main/res/layout/appwidget_provider.xml -->
