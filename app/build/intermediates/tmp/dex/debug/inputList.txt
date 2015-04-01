@@ -1,2 +1,0 @@
-D:\workplace\someleanandroid3\demo\widget\SimpleTODO-github\app\build\intermediates\classes\debug
-D:\workplace\someleanandroid3\demo\widget\SimpleTODO-github\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-2ea8eb932726ccdbab1d6aabafa1c81765f94af9.jar
