@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import com.simpletodo.bean.EventType;
 import com.simpletodo.bean.ListItem;
-import com.simpletodo.db.STODOSQLiteOpenHelper;
+import com.simpletodo.db.MySQLiteOpenHelper;
 import com.simpletodo.main.MainActivity;
 
 import android.app.AlertDialog;
@@ -59,7 +59,7 @@ public class AddButtonListener implements OnClickListener {
 		  ListItem listItem = newListItem(false, (String) typeMenu.getSelectedItem(), input.getText().toString());
 
 		  listItems.add(listItem); //store to memory
-		  STODOSQLiteOpenHelper sTODOSQLiteOpenHelper = MainActivity.getSTODOSQLiteOpenHelper();
+		  MySQLiteOpenHelper sTODOSQLiteOpenHelper = MainActivity.getSTODOSQLiteOpenHelper();
 		  sTODOSQLiteOpenHelper.addListItem(listItem); //store to SQLite
 		  }
 		});

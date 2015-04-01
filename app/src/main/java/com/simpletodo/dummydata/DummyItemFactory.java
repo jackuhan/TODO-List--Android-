@@ -7,38 +7,36 @@ import android.app.Activity;
 
 import com.simpletodo.bean.EventType;
 import com.simpletodo.bean.ListItem;
-import com.simpletodo.db.STODOSQLiteOpenHelper;
+import com.simpletodo.db.MySQLiteOpenHelper;
 import com.simpletodo.main.MainActivity;
 
 public class DummyItemFactory {
-	
-	private Activity mainActivity;
+
 	private List<ListItem> listItems;
 	
 	public DummyItemFactory(Activity mainActivity, List<ListItem> listItems){
-		this.mainActivity = mainActivity;
 		this.listItems = listItems;
 	}
 	
 	public void putDummyItemContent(){
-		listItems.add(newDummyListItem(false, "Add task type " + addQuotes("Task"), EventType.GOAL.toString()));
-		listItems.add(newDummyListItem(false, "Add sync function", EventType.GOAL.toString()));
-		listItems.add(newDummyListItem(false, "Add share function", EventType.GOAL.toString()));
-		listItems.add(newDummyListItem(false, "Add member identity", EventType.GOAL.toString()));
-		listItems.add(newDummyListItem(false, "Add call function", EventType.GOAL.toString()));
-		listItems.add(newDummyListItem(false, "Add three type layout", EventType.GOAL.toString()));
-		listItems.add(newDummyListItem(false, "Test for disappear", EventType.GOAL.toString()));
+		listItems.add(newDummyListItem(false, "Add task type " + addQuotes("Task"), EventType.IMPORTANT.toString()));
+		listItems.add(newDummyListItem(false, "Add sync function", EventType.IMPORTANT.toString()));
+		listItems.add(newDummyListItem(false, "Add share function", EventType.IMPORTANT.toString()));
+		listItems.add(newDummyListItem(false, "Add member identity", EventType.IMPORTANT.toString()));
+		listItems.add(newDummyListItem(false, "Add call function", EventType.IMPORTANT.toString()));
+		listItems.add(newDummyListItem(false, "Add three type layout", EventType.IMPORTANT.toString()));
+		listItems.add(newDummyListItem(false, "Test for disappear", EventType.IMPORTANT.toString()));
 	}
 	
 	private ListItem newDummyListItem(boolean iscomplete, String taskName, String type){
-		ListItem lI = new ListItem();
-		lI.setComplete(iscomplete);
-		lI.setId(UUID.randomUUID().toString());
-		lI.setItemName(taskName);
-		lI.setItemType(type);
-		STODOSQLiteOpenHelper sTODOSQLiteOpenHelper = MainActivity.getSTODOSQLiteOpenHelper();
-		sTODOSQLiteOpenHelper.addListItem(lI); //store to sqlite
-		return lI;
+		ListItem listItem = new ListItem();
+		listItem.setComplete(iscomplete);
+		listItem.setId(UUID.randomUUID().toString());
+		listItem.setItemName(taskName);
+		listItem.setItemType(type);
+		MySQLiteOpenHelper sqLiteOpenHelper = MainActivity.getSTODOSQLiteOpenHelper();
+		sqLiteOpenHelper.addListItem(listItem);
+		return listItem;
 	}
 	
 	private String addQuotes(String input){

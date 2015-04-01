@@ -1,31 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="#000000"
+    android:layout_height="42dp"
+    android:background="@android:color/white"
     android:gravity="center_vertical"
-    android:orientation="horizontal" >
+    android:orientation="horizontal">
 
+    <ImageButton
+        android:id="@+id/ib_appwidget_done"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:scaleType="centerInside"
+        android:background="@null"
+        android:src="@drawable/btn_check_off_focused_holo_light" />
+
+    <ImageButton
+        android:id="@+id/ib_appwidget_priority"
+        android:layout_alignParentRight="true"
+        android:background="@null"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_priority_high_import_no"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="centerInside" />
 
     <TextView
         android:id="@+id/appwidget_upper_text"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="6dp"
-        android:layout_marginTop="6dp"
-        android:gravity="center_vertical"
-        android:singleLine="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/ib_appwidget_done"
+        android:layout_toLeftOf="@+id/ib_appwidget_priority"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="left|center_vertical"
+        android:textColor="@android:color/black"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/appwidget_lower_text"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="6dp"
-        android:layout_marginTop="3dp"
-        android:layout_below="@id/appwidget_upper_text"
-        android:gravity="center_vertical"
-        android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>

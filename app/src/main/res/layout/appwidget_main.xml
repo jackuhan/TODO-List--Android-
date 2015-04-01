@@ -10,12 +10,6 @@
         android:layout_height="50dp"
         android:background="@android:color/holo_green_light">
 
-        <!--<View-->
-            <!--android:id="@+id/header_center"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerInParent="true" />-->
-
         <TextView
             android:id="@+id/tv_tasks"
             android:layout_width="wrap_content"
@@ -28,12 +22,13 @@
             android:id="@+id/tv_all_tasks"
             android:layout_below="@+id/tv_tasks"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/alltasks"
             android:textSize="14sp"
             android:textColor="@android:color/white" />
 
         <ImageButton
+            android:id="@+id/ib_task_new"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
@@ -50,9 +45,25 @@
     <ListView
         android:id="@+id/appwidget_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/holo_blue_light">
-
+        android:layout_height="wrap_content"
+        android:divider="@android:color/holo_blue_bright"
+        android:dividerHeight="1dp"
+        android:headerDividersEnabled="false"
+        android:footerDividersEnabled="false"
+        android:background="@android:color/white">
     </ListView>
+
+    <TextView
+        android:id="@+id/emepty"
+        android:background="#C0C0C0"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Add A Event"
+        android:visibility="gone"
+        />
 
 </LinearLayout>

@@ -36,6 +36,7 @@ out/
 # Gradle
 .gradle
 build
+app/build
 # Misc.
 *.DS_Store
 *.jar.properties

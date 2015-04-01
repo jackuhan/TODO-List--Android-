@@ -1,7 +1,7 @@
 package com.simpletodo.listener;
 
 import com.simpletodo.bean.ListItem;
-import com.simpletodo.db.STODOSQLiteOpenHelper;
+import com.simpletodo.db.MySQLiteOpenHelper;
 import com.simpletodo.main.MainActivity;
 
 import android.content.Context;
@@ -24,7 +24,7 @@ public class CheckBoxListener implements OnCheckedChangeListener {
 		
 		if (isChecked){
 			listItem.setComplete(true);
-			STODOSQLiteOpenHelper sTODOSQLiteOpenHelper = MainActivity.getSTODOSQLiteOpenHelper();
+			MySQLiteOpenHelper sTODOSQLiteOpenHelper = MainActivity.getSTODOSQLiteOpenHelper();
 			//modified listItem should store into database
 			sTODOSQLiteOpenHelper.setItemComplete(listItem);
 			Log.d("DEBUG", "set to true");
@@ -32,7 +32,7 @@ public class CheckBoxListener implements OnCheckedChangeListener {
 		
 		else {
 			listItem.setComplete(false);
-			STODOSQLiteOpenHelper sTODOSQLiteOpenHelper = MainActivity.getSTODOSQLiteOpenHelper();
+			MySQLiteOpenHelper sTODOSQLiteOpenHelper = MainActivity.getSTODOSQLiteOpenHelper();
 			//modified listItem should store into database
 			sTODOSQLiteOpenHelper.setItemIncomplete(listItem);
 			Log.d("DEBUG", "set to false");

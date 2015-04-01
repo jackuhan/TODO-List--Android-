@@ -5,13 +5,13 @@ import java.util.List;
 
 import android.content.Context;
 
-import com.simpletodo.db.STODOSQLiteOpenHelper;
+import com.simpletodo.db.MySQLiteOpenHelper;
 import com.simpletodo.main.MainActivity;
 
 public class ListItemData {
 	
 	private static List<ListItem> listItems;
-	private STODOSQLiteOpenHelper sTODOSQLiteOpenHelper;
+	private MySQLiteOpenHelper sTODOSQLiteOpenHelper;
 	
 	public ListItemData(Context context){
 		this.sTODOSQLiteOpenHelper = MainActivity.getSTODOSQLiteOpenHelper();

@@ -16,11 +16,11 @@ public class AppWidgetUpdater {
 	
 	public void updateAppWidget(){
 		Log.d("TEST", "updateAppWidget() was called!!");
-		ComponentName appWidget = new ComponentName(context, SimpleTODOAppWidgetProvider.class);
+		ComponentName appWidget = new ComponentName(context, SimpleToDoAppWidgetProvider.class);
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 		int[] appWidgetIds = appWidgetManager.getAppWidgetIds(appWidget);
 		
-		Intent intent = new Intent(context, SimpleTODOAppWidgetProvider.class);
+		Intent intent = new Intent(context, SimpleToDoAppWidgetProvider.class);
 		intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
 
 		// Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
