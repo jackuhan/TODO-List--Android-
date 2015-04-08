@@ -6,8 +6,6 @@ import com.simpletodo.appwidget.service.ListViewAdaptorService;
 import com.simpletodo.main.MainActivity;
 import com.simpletodo.util.AppWidgetUtils;
 import com.simpletodo.util.LogUtil;
-
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
@@ -19,23 +17,7 @@ import android.widget.RemoteViews;
 public class SimpleToDoAppWidgetProvider extends AppWidgetProvider {
     public RemoteViews remoteViews;
 
-    @Override
-    public void onDeleted(Context context, int[] appWidgetIds) {
-        //当App Widget的实例从宿主中删除时被调用。
-        LogUtil.e("SimpleToDoAppWidgetProvider", "onDeleted");
-    }
-
-    @Override
-    public void onDisabled(Context context) {
-        //当你的App Widget的最后一个实例被从宿主中删除时被调用。因为：譬如上图中的人人网小部件，你可添加N个实例。
-        LogUtil.e("SimpleToDoAppWidgetProvider", "onDisabled");
-    }
-
-    @Override
-    public void onEnabled(Context context) {
-        // 当一个App Widget实例第一次创建时被调用。
-        LogUtil.i("SimpleToDoAppWidgetProvider", "onEnabled");
-    }
+    public static final String LISTVIEW_ACTION = "com.example.simpletodo.appwidget.LISTVIEW";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -54,23 +36,30 @@ public class SimpleToDoAppWidgetProvider extends AppWidgetProvider {
             onUpdate(context, appWidgetManager, appWidgetIds);
         }
 
-        if (null != intent.getAction() && intent.getAction().equals(context.getPackageName())) {
-            onUpdate(context, appWidgetManager, appWidgetIds);
+        if (null != intent.getAction() && intent.getAction().equals(LISTVIEW_ACTION)) {
+            LogUtil.i("SimpleToDoAppWidgetProvider ","Touched view "+ intent.getIntExtra("pos",-1));
         }
     }
 
-    @Override
+//    @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
         LogUtil.i("SimpleToDoAppWidgetProvider", "onUpdate");
         if (remoteViews == null) {
             remoteViews = new RemoteViews(context.getPackageName(), R.layout.appwidget_main);
         }
+
+        ComponentName thisWidget = new ComponentName(context, SimpleToDoAppWidgetProvider.class);
+
+
         final int N = appWidgetIds.length;
         for (int i = 0; i < N; i++) {
             setListView(context, appWidgetIds[i]);
             appWidgetManager.updateAppWidget(appWidgetIds[i], remoteViews);
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds[i], R.id.appwidget_listview);
+            appWidgetManager.updateAppWidget(thisWidget, remoteViews);
+            AppWidgetManager manager = AppWidgetManager.getInstance(context);
+            manager.notifyAppWidgetViewDataChanged(appWidgetIds[i], R.id.appwidget_listview);
         }
     }
 
@@ -82,8 +71,26 @@ public class SimpleToDoAppWidgetProvider extends AppWidgetProvider {
         remoteViews.setRemoteAdapter(R.id.appwidget_listview, svcIntent);
         remoteViews.setEmptyView(R.id.appwidget_listview, R.id.emepty);
 
-        remoteViews.setOnClickPendingIntent(R.id.ib_task_new, AppWidgetUtils.createConfigurePendingIntent(context, appWidgetId, MainActivity.class));
+        remoteViews.setOnClickPendingIntent(R.id.ib_task_new, AppWidgetUtils.createActivityPendingIntent(context, appWidgetId, MainActivity.class));
+        remoteViews.setPendingIntentTemplate(R.id.appwidget_listview, AppWidgetUtils.createBroadcastPendingIntent(context, appWidgetId, LISTVIEW_ACTION));
     }
 
 
+    @Override
+    public void onDeleted(Context context, int[] appWidgetIds) {
+        //当App Widget的实例从宿主中删除时被调用。
+        LogUtil.e("SimpleToDoAppWidgetProvider", "onDeleted");
+    }
+
+    @Override
+    public void onDisabled(Context context) {
+        //当你的App Widget的最后一个实例被从宿主中删除时被调用。因为：譬如上图中的人人网小部件，你可添加N个实例。
+        LogUtil.e("SimpleToDoAppWidgetProvider", "onDisabled");
+    }
+
+    @Override
+    public void onEnabled(Context context) {
+        // 当一个App Widget实例第一次创建时被调用。
+        LogUtil.i("SimpleToDoAppWidgetProvider", "onEnabled");
+    }
 }

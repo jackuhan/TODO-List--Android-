@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 17
+    compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
     defaultConfig {
         applicationId "com.example.simpletodo"
-        minSdkVersion 16
+        minSdkVersion 14
         targetSdkVersion 21
     }
 

@@ -10,20 +10,23 @@ import com.simpletodo.main.MainActivity;
 
 public class AppWidgetUtils {
 
-    public static PendingIntent createConfigurePendingIntent(Context context, int appWidgetId, Class<?> configureClass) {
+    public static PendingIntent createActivityPendingIntent(Context context, int appWidgetId, Class<?> configureClass) {
         Intent configureIntent = new Intent(context, configureClass);
         configureIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         return PendingIntent.getActivity(context, -appWidgetId, configureIntent, 0);
     }
 
-    public static Intent createIntent(Context ctx, int pos) {
-        Intent intent = new Intent(ctx, MainActivity.class);
-        return intent;
+    public static PendingIntent createBroadcastPendingIntent(Context context, int appWidgetId, String ACTIVON) {
+        Intent configureIntent = new Intent();
+        configureIntent.setAction(ACTIVON);
+        return PendingIntent.getBroadcast(context, 0, configureIntent, 0);
     }
 
-    public static PendingIntent createPendingIntent(Context ctx, int pos) {
-        Intent intent = createIntent(ctx, pos);
-        return PendingIntent.getActivity(ctx, pos, intent, 0);
+    public static PendingIntent createServicePendingIntent(Context context, int appWidgetId, String ACTION) {
+        Intent configureIntent = new Intent();
+        configureIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+        configureIntent.setAction(ACTION);
+        return PendingIntent.getService(context, 0, configureIntent, 0);
     }
 
 
