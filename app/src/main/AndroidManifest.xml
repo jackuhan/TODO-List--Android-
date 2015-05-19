@@ -23,9 +23,13 @@
             <!--必须为android.appwidget.provider,描述此应用是个Widget程序-->
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@layout/appwidget_provider" />
+                android:resource="@xml/appwidget_provider" />
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="com.example.simpletodo.appwidget.LISTVIEW" />
             </intent-filter>
         </receiver>
 

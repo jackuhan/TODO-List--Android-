@@ -46,3 +46,4 @@ cache.properties.lock
 com_crashlytics_export_strings.xml
 
 
+app/build.gradle
