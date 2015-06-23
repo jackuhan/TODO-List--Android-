@@ -14,7 +14,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.widget.RemoteViews;
 
-public class SimpleToDoAppWidgetProvider extends AppWidgetProvider {
+public class SimpleToDoProvider extends AppWidgetProvider {
     public RemoteViews remoteViews;
 
     public static final String LISTVIEW_ACTION = "com.example.simpletodo.appwidget.LISTVIEW";
@@ -29,7 +29,7 @@ public class SimpleToDoAppWidgetProvider extends AppWidgetProvider {
             LogUtil.i("SimpleToDoAppWidgetProvider onReceive", intent.getAction());
         }
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-        ComponentName thisAppWidget = new ComponentName(context.getPackageName(), SimpleToDoAppWidgetProvider.class.getName());
+        ComponentName thisAppWidget = new ComponentName(context.getPackageName(), SimpleToDoProvider.class.getName());
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisAppWidget);
 
         if (null != intent.getAction() && intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE")) {
@@ -49,7 +49,11 @@ public class SimpleToDoAppWidgetProvider extends AppWidgetProvider {
             remoteViews = new RemoteViews(context.getPackageName(), R.layout.appwidget_main);
         }
 
+<<<<<<< HEAD:app/src/main/java/com/simpletodo/appwidget/SimpleTODOAppWidgetProvider.java
         ComponentName thisWidget = new ComponentName(context, SimpleToDoAppWidgetProvider.class);
+=======
+        ComponentName thisWidget = new ComponentName(context, SimpleToDoProvider.class);
+>>>>>>> ff4daa487cd8f417c086a651da09f49df487af93:app/src/main/java/com/simpletodo/appwidget/SimpleToDoProvider.java
 
 
         final int N = appWidgetIds.length;
